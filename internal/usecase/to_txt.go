@@ -34,8 +34,8 @@ func ToTtx(folderPath string, outputFilePath string, config ToTxtConfig) error {
 		if err != nil {
 			return err
 		}
-		relativePath := strings.Replace(path, folderPath, "", 1)
-		separator := fmt.Sprintf(config.Separator, relativePath)
+		path = strings.TrimPrefix(path, folderPath)
+		separator := fmt.Sprintf(config.Separator, path)
 		if _, err := outputFile.WriteString(separator + string(content) + "\n"); err != nil {
 			return err
 		}
